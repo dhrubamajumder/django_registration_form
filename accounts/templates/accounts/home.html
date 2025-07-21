@@ -1,7 +1,20 @@
 {% extends 'accounts/base.html' %}
 {% block content %}
 <div class="container mt-4">
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }}">
+  {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %} 
+
+  <div class="d-flex justify-content-end mb-3">
+    <a href="{% url 'login' %}" class="btn btn-danger" onclick="return confirm('Are you sure you want to logout?')">Logout</a>
+  </div>
   <h2>Welcome, {{ user.username }}</h2>
-  <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+  <h2>User email : {{ user.email }}</h2>
+  
+  <a href="{% url 'dash' %}" class="btn btn-primary">User Info List</a>
 </div>
 {% endblock %}

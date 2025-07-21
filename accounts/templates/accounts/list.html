@@ -1,46 +1,44 @@
 {% extends 'accounts/base.html' %}
 {% block content %}
 <div class="container mt-4">
-   
+    {% if form.non_field_errors %}
+    <div class="alert alert-danger">
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <h2>Register</h2>
+                <h2>User Information</h2>
                 <div class="form-group">
                     <label for="username">Username:</label>
                     <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
                     <small class="text-danger">{{ form.username.errors }}</small>
-
                 </div>
                 
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required> 
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
                     <small class="text-danger">{{ form.email.errors }}</small>
-
                 </div>
+
                 <div class="form-group">
                     <label for="password1">Password:</label>
-                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter your password" required> 
+                    <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter your password" required>
                     <small class="text-danger">{{ form.password1.errors }}</small>
-
                 </div>
+
                 <div class="form-group">
                     <label for="password2">Confrom Password:</label>
                     <input type="password" class="form-control" id="password2" name="password2" placeholder="Enter your confirm password" required>
                     <small class="text-danger">{{ form.password2.errors }}</small>
-
                 </div><br>
 
-                {% if form.non_field_errors %}
-                <div class="alert alert-danger">
-                    {{ form.non_field_errors }}
-                </div>
-            {% endif %}
-            <br><br>
-                <button type="submit" class="btn btn-primary">Register</button>
-                <a href="{% url 'login' %}" class="btn btn-defult">Have a account</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{% url 'info' %}" class="btn btn-danger">Reset</a> 
+               <a href="{% url 'dash' %}" class="btn btn-dark">Cancel</a> 
+
             </div>
             
         </div>
